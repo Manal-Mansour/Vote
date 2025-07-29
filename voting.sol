@@ -44,6 +44,8 @@ contract VotingSystem {
     }
 
     function getWinner() public view returns (string memory winnerName, uint winnerVotes) {
+        require(candidates.length > 0, "No candidates available");
+
         uint maxVotes = 0;
         uint winnerIndex = 0;
 
@@ -57,13 +59,13 @@ contract VotingSystem {
         return (candidates[winnerIndex].name, candidates[winnerIndex].voteCount);
     }
 
-    // 🔽 Add these at the end of the contract
-
+    // Accept plain Ether transfers
     receive() external payable {
-        // Accept Ether with no data
+        // Ether received without data
     }
 
+    // Accept Ether with unknown function calls or data
     fallback() external payable {
-        // Accept Ether with data or to unknown function
+        // Fallback function called
     }
 }
