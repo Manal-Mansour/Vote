@@ -10,7 +10,6 @@ contract VotingSystem {
     }
 
     Candidate[] public candidates;
-
     mapping(address => bool) public hasVoted;
 
     constructor() {
@@ -56,5 +55,15 @@ contract VotingSystem {
         }
 
         return (candidates[winnerIndex].name, candidates[winnerIndex].voteCount);
+    }
+
+    // 🔽 Add these at the end of the contract
+
+    receive() external payable {
+        // Accept Ether with no data
+    }
+
+    fallback() external payable {
+        // Accept Ether with data or to unknown function
     }
 }
